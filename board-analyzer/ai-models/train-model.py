@@ -35,7 +35,7 @@ except FileNotFoundError:
 	print('ERROR: Cannot find data files')
 	exit()
 
-cnn_model = build(output_types=13, activation='softmax', loss='log_cosh', optimizer=Nadam(learning_rate=0.0003))
+cnn_model = build(output_types=7, activation='softmax', loss='log_cosh', optimizer=Nadam(learning_rate=0.0003))
 cnn_model.summary()
 cnn_model.fit(x=data, epochs=3)
 cnn_model.save('figures_recognition.h5')
