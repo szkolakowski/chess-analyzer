@@ -34,47 +34,23 @@ for images in os.listdir('possible-tiles/empty'):
 		upper_bool = tile.isupper()
 		destination_foler = 'possible-tiles/'
 		if tile == 'p' or tile =='P':
-			if upper_bool:
-				destination_foler += 'pawn-w'
-				shutil.move('possible-tiles/empty/' + images, destination_foler)
-			else:
-				destination_foler += 'pawn-b'
-				shutil.move('possible-tiles/empty/' + images, destination_foler)
+			destination_foler += 'pawn'
+			shutil.move('possible-tiles/empty/' + images, destination_foler)
 		elif tile == 'n' or tile =='N':
-			if upper_bool:
-				destination_foler += 'knight-w'
-				shutil.move('possible-tiles/empty/' + images, destination_foler)
-			else:
-				destination_foler += 'knight-b'
-				shutil.move('possible-tiles/empty/' + images, destination_foler)
+			destination_foler += 'knight'
+			shutil.move('possible-tiles/empty/' + images, destination_foler)
 		elif tile == 'b' or tile =='B':
-			if upper_bool:
-				destination_foler += 'bishop-w'
-				shutil.move('possible-tiles/empty/' + images, destination_foler)
-			else:
-				destination_foler += 'bishop-b'
-				shutil.move('possible-tiles/empty/' + images, destination_foler)
+			destination_foler += 'bishop'
+			shutil.move('possible-tiles/empty/' + images, destination_foler)
 		elif tile == 'r' or tile =='R':
-			if upper_bool:
-				destination_foler += 'rook-w'
-				shutil.move('possible-tiles/empty/' + images, destination_foler)
-			else:
-				destination_foler += 'rook-b'
-				shutil.move('possible-tiles/empty/' + images, destination_foler)
+			destination_foler += 'rook'
+			shutil.move('possible-tiles/empty/' + images, destination_foler)
 		elif tile == 'q' or tile =='Q':
-			if upper_bool:
-				destination_foler += 'queen-w'
-				shutil.move('possible-tiles/empty/' + images, destination_foler)
-			else:
-				destination_foler += 'queen-b'
-				shutil.move('possible-tiles/empty/' + images, destination_foler)
+			destination_foler += 'queen'
+			shutil.move('possible-tiles/empty/' + images, destination_foler)
 		elif tile == 'k' or tile =='K':
-			if upper_bool:
-				destination_foler += 'king-w'
-				shutil.move('possible-tiles/empty/' + images, destination_foler)
-			else:
-				destination_foler += 'king-b'
-				shutil.move('possible-tiles/empty/' + images, destination_foler)
+			destination_foler += 'king'
+			shutil.move('possible-tiles/empty/' + images, destination_foler)
 		print('current position: ' + str(img) + '/' + str(imgs))
 		# empty tiles in empty
 
