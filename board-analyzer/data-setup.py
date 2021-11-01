@@ -83,6 +83,6 @@ for folders in os.listdir('possible-tiles'):
 	imgs = 1
 	for images in os.listdir('possible-tiles/' + folders):
 		imgs += 1
-		if imgs > 8000:
+		if imgs > 24000:
 			os.remove('possible-tiles/' + folders + '/' + images)
 			print('current position: ' + str(imgs) + '/8000 in ' + folders)

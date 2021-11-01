@@ -2,7 +2,7 @@ from fastapi import FastAPI, File, Form, UploadFile
 from tensorflow.keras.preprocessing import image
 from PIL import Image as i
 from tensorflow import keras
-import os, image_slicer, time
+import os, image_slicer, time, shutil
 import numpy as np
 from stockfish import Stockfish
 
@@ -39,7 +39,8 @@ async def predict(direc):
 async def clean(conf):
     if conf:
         os.remove('boards/' + str(len(os.listdir('boards'))-2) + '.png')
-        shutil.rmtree('boards/' + str(len(os.listdir('boards'))-2))
+        shutil.rmtree('boards/' + str(len(os.listdir('boards'))-1))
+    return conf
 
 @app.post('/chessboard')
 async def handle_form(file: UploadFile = File(...)):
@@ -66,6 +67,6 @@ async def handle_form(file: UploadFile = File(...)):
 
     fen = '-'.join(fen)
 
-    clean = await clean(True)
+    mess = await clean(True)
 
     return {'fen': fen, 'fec': '8/1P3PQ1/pRP2p1P/5k2/5N2/p7/2K3Pp/qR6','fen-raw': fen_save}
