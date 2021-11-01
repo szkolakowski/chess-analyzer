@@ -65,8 +65,8 @@ async def handle_form(file: UploadFile = File(...)):
             f += str(conn)
         fen.append(f)
 
-    fen = '-'.join(fen)
+    fen = '/'.join(fen)
 
     mess = await clean(True)
 
-    return {'fen': fen, 'fec': '8/1P3PQ1/pRP2p1P/5k2/5N2/p7/2K3Pp/qR6','fen-raw': fen_save}
+    return {'fen': fen, 'fec': '8/5k2/3p4/1p1Pp2p/pP2Pp1P/P4P1K/8/8','fen-raw': fen_save}
