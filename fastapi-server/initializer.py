@@ -4,6 +4,7 @@ from PIL import Image as i
 from tensorflow import keras
 import os, image_slicer, time
 import numpy as np
+from stockfish import Stockfish
 
 app = FastAPI()
 
@@ -25,7 +26,6 @@ async def predict(direc):
     tiles = sorted(os.listdir(direc))
     for tile in tiles:
         figures = ['b', 'B', '0', 'k', 'K', 'n', 'N', 'p', 'P', 'q', 'Q', 'r', 'R']
-        print(direc + '/' + tile)
         test = image.load_img(direc + '/' + tile, target_size=(120,120))
         test = image.img_to_array(test)
         test = np.expand_dims(test, axis=0)
@@ -36,10 +36,36 @@ async def predict(direc):
         fen += str(figures[result])
     return fen
 
+async def clean(conf):
+    if conf:
+        os.remove('boards/' + str(len(os.listdir('boards'))-2) + '.png')
+        shutil.rmtree('boards/' + str(len(os.listdir('boards'))-2))
+
 @app.post('/chessboard')
 async def handle_form(file: UploadFile = File(...)):
     image = await openImage(file)
     tiles = await saveTiles(64)
     fen = await predict('boards/' + str(len(os.listdir('boards'))-2))
-    fen = '-'.join([fen[i:i+8] for i in range(0, len(fen), 8)])
-    return {'message': fen}
+    fen_save = fen
+    fen_r = [fen[i:i+8] for i in range(0, len(fen), 8)]
+    fen = []
+    for fen_part in fen_r:
+        f = ''
+        conn = 0
+        for chars in fen_part:
+            if chars == '0':
+                conn += 1
+            else:
+                if conn > 0:
+                    f += str(conn)
+                conn = 0
+                f += chars
+        if conn > 0:
+            f += str(conn)
+        fen.append(f)
+
+    fen = '-'.join(fen)
+
+    clean = await clean(True)
+
+    return {'fen': fen, 'fec': '8/1P3PQ1/pRP2p1P/5k2/5N2/p7/2K3Pp/qR6','fen-raw': fen_save}
