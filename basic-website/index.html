@@ -6,8 +6,8 @@
 	<title></title>
 </head>
 <body>
-	<form method="POST" action="https://localhost:8000/chessboard">
-		<input type="file" id="myFile" name="myBoard">
+	<form method="POST" action="http://localhost:8000/chessboard" enctype="multipart/form-data">
+		<input type="file" id="file" name="file" required>
 		<button type="submit">submit</button>
 	</form>
 </body>
