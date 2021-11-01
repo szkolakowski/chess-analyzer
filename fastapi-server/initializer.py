@@ -25,7 +25,7 @@ async def predict(direc):
     fen = ''
     tiles = sorted(os.listdir(direc))
     for tile in tiles:
-        figures = ['b', 'B', '0', 'k', 'K', 'n', 'N', 'p', 'P', 'q', 'Q', 'r', 'R']
+        figures = ['B', '0', 'K', 'N', 'P', 'Q', 'R']
         test = image.load_img(direc + '/' + tile, target_size=(120,120))
         test = image.img_to_array(test)
         test = np.expand_dims(test, axis=0)

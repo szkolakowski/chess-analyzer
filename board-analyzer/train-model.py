@@ -27,7 +27,7 @@ def build(output_types, activation, loss, optimizer):
 	return model
 
 try:
-	data_path = ',,/possible-tiles'
+	data_path = 'possible-tiles'
 	generator = ImageDataGenerator(rescale=1./255, shear_range=0.3, zoom_range=0.3, horizontal_flip=True)
 	data = generator.flow_from_directory(data_path, target_size=(120,120), batch_size=32, class_mode='categorical')
 	print('SUCCESS: Generator set up success')
